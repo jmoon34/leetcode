@@ -1,3 +1,6 @@
+# Implementation of Dijkstra's algorithm for undirected graph by coding class Vertex and Graph
+# The class vertex includes fields that are specifically tailored for the shortest patht algorithm
+
 import sys
 import heapq
 

@@ -1,3 +1,6 @@
+# Implementation of graphs using an adjacency matrix.
+# Implementation of Dijkstra's algorithm: not as efficient as writing a class for Vertex (refer to Graph_vertex.py)
+# since we can't use a min-heap and have to use the utility function min_distance()
 import sys
 import heapq
 class Graph_adj_matrix:
