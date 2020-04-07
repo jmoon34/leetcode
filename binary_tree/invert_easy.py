@@ -44,8 +44,22 @@ def invert_binary_tree_iter(root):
             q.append(current.right)
     return root
 
+
+def invert_binary_tree_bfs(root):
+    if not root:
+        return None
+    s = [root]
+    while s:
+        current = s.pop()
+        current.left, current.right = current.right, current.left
+        if current.left:
+            s.append(current.left)
+        if current.right:
+            s.append(current.right)
+    return root
+
 x = TreeNode.arr_to_binary_tree([4,2,7,1,3,6,9])
-TreeNode.in_order_traversal(x)
+TreeNode.in_order_traversal_rec(x)
 print()
 x = invert_binary_tree_iter(x)
-TreeNode.in_order_traversal(x)
+TreeNode.in_order_traversal_rec(x)

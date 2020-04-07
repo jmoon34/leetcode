@@ -11,17 +11,50 @@ class TreeNode:
         return str(self)
 
     @staticmethod
-    def in_order_traversal(node):
+    def in_order_traversal_rec(node):
         if not node:
             return
-        TreeNode.in_order_traversal(node.left)
+        TreeNode.in_order_traversal_rec(node.left)
         print(node.val, end=" ")
-        TreeNode.in_order_traversal(node.right)
+        TreeNode.in_order_traversal_rec(node.right)
+
+    @staticmethod
+    def in_order_traversal_iter(root):
+        stack = [root]
+        current = root
+        while stack or current:
+            while current:
+                if current != root:
+                    stack.append(current)
+                current = current.left
+            node = stack.pop()
+            print(node.val, end=" ")
+            current = node.right
+
+    @staticmethod
+    def pre_order_traversal_rec(node):
+        if not node:
+            return
+        print(node.val, end=" ")
+        TreeNode.pre_order_traversal_rec(node.left)
+        TreeNode.pre_order_traversal_rec(node.right)
+
+    @staticmethod
+    def pre_order_traversal_iter(root):
+        stack = [root]
+        while stack:
+            current = stack.pop()
+            print(current.val, end=" ")
+            if current.right:
+                stack.append(current.right)
+            if current.left:
+                stack.append(current.left)
+
 
     @staticmethod
     def arr_to_binary_tree(arr):
         def build(i):
-            if i >= len(arr) or not arr[i]:
+            if i >= len(arr) or arr[i] is None:
                 return None
             node = TreeNode(arr[i])
             node.left = build(2*i+1)
@@ -29,5 +62,8 @@ class TreeNode:
             return node
         return build(0)
 
-x = TreeNode.arr_to_binary_tree([1,2,3,None,4,None,6])
-#TreeNode.in_order_traversal(x)
+
+x = TreeNode.arr_to_binary_tree([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14])
+# TreeNode.in_order_traversal_rec(x)
+# print()
+# TreeNode.in_order_traversal_iter(x)

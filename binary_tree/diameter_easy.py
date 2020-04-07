@@ -29,4 +29,4 @@ def diameter(root):
 
 
 x = TreeNode.arr_to_binary_tree([1,2,3,4,5,None,None,None,None,6])
-TreeNode.in_order_traversal(x)
+TreeNode.in_order_traversal_rec(x)

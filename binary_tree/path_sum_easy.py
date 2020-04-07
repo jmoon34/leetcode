@@ -19,16 +19,18 @@
 from TreeNode import TreeNode
 
 def path_sum_iter(root, sum):
-    stack = [root]
-    s = 0
+    if not root:
+        return False
+    stack = [(root, root.val)]
     while stack:
-        current = stack.pop(-1)
-        print(current.val, end=" ")
-        s += current.val
+        current, c_sum = stack.pop()
+        if c_sum == sum and not current.left and not current.right:
+            return True
         if current.left:
-            stack.append(current.left)
+            stack.append((current.left, c_sum+current.left.val))
         if current.right:
-            stack.append(current.right)
+            stack.append((current.right, c_sum+current.right.val))
+    return False
 
 def path_sum_rec(root, sum):
     def rec(node, s):
@@ -41,7 +43,6 @@ def path_sum_rec(root, sum):
 
 
 x = TreeNode.arr_to_binary_tree([5,4,8,11,None,13,4,7,2,None,None,None,None,None,1])
-y = TreeNode.arr_to_binary_tree([1,2])
-TreeNode.in_order_traversal(y)
+
 print()
 print(path_sum_iter(x, 22))
