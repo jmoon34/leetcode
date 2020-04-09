@@ -31,6 +31,11 @@ class MinHeap:
             else:
                 self.heap[2*i+2], self.heap[i] = self.heap[i], self.heap[2*i+2]
                 i = 2*i + 2
+        if 2*i + 1 < len(self.heap):
+            if self.heap[2*i+1] < self.heap[i]:
+                self.heap[i], self.heap[2*i+1] = self.heap[2*i+1], self.heap[i]
+                i = 2*i + 1
+
 
     # O(log n)
     def add(self, x):
@@ -56,14 +61,6 @@ class MinHeap:
 
 
 m = MinHeap()
-m.heap = [8,9,8,12,11,10,14,21,23]
-m.add(0)
-print(m.heap)
+m.heap = [0,4,2,5,7,6,8]
 print(m.pop_min())
-print(m.heap)
-m.change_priority(5, 7)
-print(m.heap)
-m.remove(1)
-print(m.heap)
-m.remove(6)
 print(m.heap)
