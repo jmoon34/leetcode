@@ -40,3 +40,22 @@ def permute_unique_2(nums):
     return sol
 
 
+def heaps_algorithm(nums):
+    def backtrack(i=0):
+        if i == n:
+            solution.add(tuple(nums[:]))
+        for j in range(i, n):
+            nums[i], nums[j] = nums[j], nums[i]
+            backtrack(i+1)
+            nums[i], nums[j] = nums[j], nums[i]
+
+    solution = set()
+    n = len(nums)
+    backtrack()
+    return solution
+
+
+print(heaps_algorithm([1,1,2]))
+
+
+

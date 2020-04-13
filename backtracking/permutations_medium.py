@@ -28,7 +28,40 @@ def permute(nums):
             sol.append([nums[i]] + s)
     return sol
 
-print(permute([1,2,3]))
+
+# [1]
+# [2,3]
+def heaps_alg(nums):
+    def backtrack(i=0):
+        if i == n:
+            solution.append(nums[:])
+        for j in range(i, n):
+            nums[i], nums[j] = nums[j], nums[i]
+            backtrack(i+1)
+            nums[i], nums[j] = nums[j], nums[i]
+    solution = []
+    n = len(nums)
+    backtrack()
+    return solution
+
+
+def permutation_dfs(nums):
+    def dfs(arr, sequence, sol):
+        if not arr:
+            sol.append(sequence)
+        else:
+            for i in range(len(arr)):
+                dfs(arr[:i] + arr[i+1:], sequence + [arr[i]], sol)
+
+    sol = []
+    dfs(nums, [], sol)
+    return sol
+
+
+
+
+
+print(permutation_dfs([1,2,3,4]))
 
 
 
